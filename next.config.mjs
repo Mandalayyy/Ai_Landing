@@ -29,8 +29,8 @@ const nextConfig = {
 
     return config;
   },
-  basePath: isProd ? '/Portfolio' : '', 
-  assetPrefix: isProd ? '/Portfolio' : '',
+  basePath: isProd ? '/Ai_Landing' : '', 
+  assetPrefix: isProd ? '/Ai_Landing/' : '',
   output: 'export',
   distDir: 'dist',
   images: {
