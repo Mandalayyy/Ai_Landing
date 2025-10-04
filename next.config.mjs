@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production';
-
 const nextConfig = {
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) =>
@@ -25,12 +23,10 @@ const nextConfig = {
 
     return config;
   },
-  // basePath: isProd ? '/Ai_Landing' : '', 
-  // assetPrefix: isProd ? '/Ai_Landing/' : '',
-  distDir: 'dist',
   images: {
     unoptimized: true,
   },
+  reactStrictMode: true,
 };
 
-export default nextConfig;
+module.exports = nextConfig;
