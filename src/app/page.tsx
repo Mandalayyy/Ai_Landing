@@ -6,12 +6,16 @@ import { Testimonials } from "@/sections/Testimonials";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
 
-async function getMockData() {
+// ISR: сторінка буде пересоздаватися кожні 10 секунд
+export const revalidate = 10;
+
+// Імітаційна функція для навантаження
+async function fetchMockData() {
   return Array.from({ length: 5000 }, (_, i) => `Item ${i + 1}`);
 }
 
 export default async function Home() {
-  const mockData = await getMockData();
+  const mockData = await fetchMockData();
 
   return (
     <>
@@ -23,10 +27,10 @@ export default async function Home() {
       <CallToAction />
       <Footer />
 
-      {/* Додаємо дані для метрик, але не показуємо */}
+      {/* Приховані дані для навантаження */}
       <div style={{ display: "none" }}>
-        {mockData.map((item, idx) => (
-          <div key={idx}>{item}</div>
+        {mockData.map((item, index) => (
+          <span key={index}>{item}</span>
         ))}
       </div>
     </>
