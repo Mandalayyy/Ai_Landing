@@ -6,14 +6,29 @@ import { Testimonials } from "@/sections/Testimonials";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
 
-export default function Home() {
-  return <>
-  <Header />
-  <Hero />
-  <LogoTicker />
-  <Features />
-  <Testimonials />
-  <CallToAction />
-  <Footer />
-  </>
+async function getMockData() {
+  return Array.from({ length: 5000 }, (_, i) => `Item ${i + 1}`);
+}
+
+export default async function Home() {
+  const mockData = await getMockData();
+
+  return (
+    <>
+      <Header />
+      <Hero />
+      <LogoTicker />
+      <Features />
+      <Testimonials />
+      <CallToAction />
+      <Footer />
+
+      {/* Додаємо дані для метрик, але не показуємо */}
+      <div style={{ display: "none" }}>
+        {mockData.map((item, idx) => (
+          <div key={idx}>{item}</div>
+        ))}
+      </div>
+    </>
+  );
 }
