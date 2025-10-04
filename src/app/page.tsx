@@ -9,8 +9,8 @@ import { Footer } from "@/sections/Footer";
 export const dynamic = "force-dynamic"; 
 
 export default async function Home() {
-  const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice.json", { cache: "no-store" });
-  const data = await res.json();
+  // const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice.json", { cache: "no-store" });
+  // const data = await res.json();
 
   return (
     <>
@@ -20,9 +20,9 @@ export default async function Home() {
       <Features />
       <Testimonials />
       <CallToAction />
-      <div className="text-center text-gray-500 p-6">
+      {/* <div className="text-center text-gray-500 p-6">
         <p>Current BTC rate (SSR example): {data.bpi.USD.rate}</p>
-      </div>
+      </div> */}
       <Footer />
     </>
   );
