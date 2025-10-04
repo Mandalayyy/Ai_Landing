@@ -20,7 +20,7 @@ export default async function Home() {
       <Features />
       <Testimonials />
       <CallToAction />
-      <div className="text-center text-gray-500 p-6 text-transparent">
+      <div className="text-center text-gray-500 p-6">
         <p>Current BTC rate (SSR example): {data.bpi.USD.rate}</p>
       </div>
       <Footer />
