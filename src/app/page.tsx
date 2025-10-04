@@ -6,14 +6,24 @@ import { Testimonials } from "@/sections/Testimonials";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
 
-export default function Home() {
-  return <>
-  <Header />
-  <Hero />
-  <LogoTicker />
-  <Features />
-  <Testimonials />
-  <CallToAction />
-  <Footer />
-  </>
+export const dynamic = "force-dynamic"; 
+
+export default async function Home() {
+  const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice.json", { cache: "no-store" });
+  const data = await res.json();
+
+  return (
+    <>
+      <Header />
+      <Hero />
+      <LogoTicker />
+      <Features />
+      <Testimonials />
+      <CallToAction />
+      <div className="text-center text-gray-500 p-6">
+        <p>Current BTC rate (SSR example): {data.bpi.USD.rate}</p>
+      </div>
+      <Footer />
+    </>
+  );
 }
