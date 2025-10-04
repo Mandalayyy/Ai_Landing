@@ -1,3 +1,6 @@
+"use client"; // Обов'язково для CSR!
+
+import { useState, useEffect } from "react";
 import { Header } from "@/sections/Header";
 import { Hero } from "@/sections/Hero";
 import { LogoTicker } from "@/sections/LogoTicker";
@@ -6,12 +9,14 @@ import { Testimonials } from "@/sections/Testimonials";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
 
-async function getMockData() {
-  return Array.from({ length: 5000 }, (_, i) => `Item ${i + 1}`);
-}
+export default function Home() {
+  const [mockData, setMockData] = useState<string[]>([]);
 
-export default async function Home() {
-  const mockData = await getMockData();
+  useEffect(() => {
+    // Імітація великого обсягу даних на клієнті
+    const data = Array.from({ length: 5000 }, (_, i) => `Item ${i + 1}`);
+    setMockData(data);
+  }, []);
 
   return (
     <>
@@ -23,10 +28,10 @@ export default async function Home() {
       <CallToAction />
       <Footer />
 
-      {/* Додаємо дані для метрик, але не показуємо */}
+      {/* Приховані дані для навантаження */}
       <div style={{ display: "none" }}>
-        {mockData.map((item, idx) => (
-          <div key={idx}>{item}</div>
+        {mockData.map((item, index) => (
+          <span key={index}>{item}</span>
         ))}
       </div>
     </>
