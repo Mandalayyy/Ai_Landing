@@ -6,11 +6,15 @@ import { Testimonials } from "@/sections/Testimonials";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
 
-export const dynamic = "force-dynamic"; 
+export const dynamic = "force-dynamic"; // Активує SSR
+
+// Імітаційна функція для навантаження
+async function fetchMockData() {
+  return Array.from({ length: 5000 }, (_, i) => `Item ${i + 1}`);
+}
 
 export default async function Home() {
-  // const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice.json", { cache: "no-store" });
-  // const data = await res.json();
+  const mockData = await fetchMockData();
 
   return (
     <>
@@ -20,10 +24,14 @@ export default async function Home() {
       <Features />
       <Testimonials />
       <CallToAction />
-      {/* <div className="text-center text-gray-500 p-6">
-        <p>Current BTC rate (SSR example): {data.bpi.USD.rate}</p>
-      </div> */}
       <Footer />
+
+      {/* Приховані дані для навантаження */}
+      <div style={{ display: "none" }}>
+        {mockData.map((item, index) => (
+          <span key={index}>{item}</span>
+        ))}
+      </div>
     </>
   );
 }
